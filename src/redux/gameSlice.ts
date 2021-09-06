@@ -10,13 +10,14 @@ export interface GameState {
     bot2Position: number[]
     bot2Size: number[]
     exitPosition: number[]
-    itemPosition: number[]
+    keyPosition: number[]
     startStatus: boolean
     pauseStatus: boolean
     saveStatus: boolean
+    keyForExit: boolean
 }
 
-const initialState: GameState = {
+export const initialState: GameState = {
     level: 1,
     gameOverStatus: false,
     heroPosition: [20, 60],
@@ -25,10 +26,11 @@ const initialState: GameState = {
     bot2Position: [500, 500],
     bot2Size: [0, 0],
     exitPosition: [],
-    itemPosition: [0, 0],
+    keyPosition: [0, 0],
     pauseStatus: false,
     saveStatus: false,
     startStatus: false,
+    keyForExit: false,
 }
 
 export const gameSlice = createSlice({
@@ -51,9 +53,15 @@ export const gameSlice = createSlice({
         startStatusAction: (state) => {
             state.startStatus = true
         },
+        keyForExitAction: (state, action: PayloadAction<boolean>) => {
+            console.log("keyReducer")
 
+            state.keyForExit = action.payload
+        },
         heroMoveAction: (state, action: PayloadAction<number[]>) => {
             state.heroPosition = action.payload
+            console.log("heroReducer")
+            console.log(action.payload)
         },
         botMoveAction: (state, action: PayloadAction<number[]>) => {
             state.botPosition = action.payload
@@ -67,8 +75,11 @@ export const gameSlice = createSlice({
         bot2SizeInitAction: (state, action: PayloadAction<number[]>) => {
             state.bot2Size = action.payload
         },
-        itemSetPositionAction: (state, action: PayloadAction<number[]>) => {
-            state.itemPosition = action.payload
+        keyPositionSetPositionAction: (
+            state,
+            action: PayloadAction<number[]>
+        ) => {
+            state.keyPosition = action.payload
         },
         exitSetPositionAction: (state, action: PayloadAction<number[]>) => {
             state.exitPosition = action.payload
@@ -87,7 +98,7 @@ export const gameSlice = createSlice({
             state.bot2Size = action.payload.bot2Size
             state.botSize = action.payload.botSize
 
-            state.itemPosition = action.payload.itemPosition
+            state.keyPosition = action.payload.keyPosition
             state.exitPosition = action.payload.exitPosition
 
             // state = action.payload
@@ -100,7 +111,7 @@ export const {
     gameOverAction,
     heroMoveAction,
     botMoveAction,
-    itemSetPositionAction,
+    keyPositionSetPositionAction,
     exitSetPositionAction,
     botSizeInitAction,
     bot2MoveAction,
@@ -109,6 +120,7 @@ export const {
     saveAction,
     pauseStatusAction,
     startStatusAction,
+    keyForExitAction,
 } = gameSlice.actions
 
 // The function below is called a selector and allows us to select a value from
@@ -119,7 +131,7 @@ export const selectLevel = (state: RootState) => state.game.level
 export const selectGameOverStatus = (state: RootState) =>
     state.game.gameOverStatus
 export const selectBotPosition = (state: RootState) => state.game.botPosition
-export const selectItemPosition = (state: RootState) => state.game.itemPosition
+export const selectItemPosition = (state: RootState) => state.game.keyPosition
 export const selectExitPosition = (state: RootState) => state.game.exitPosition
 
 // export const incrementIfOdd = (amount: number) => (

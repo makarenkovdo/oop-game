@@ -1,5 +1,6 @@
 export default class Hero {
     constructor(
+        position,
         personName = "Hero",
         xPosition = 0,
         yPosition = 0,
@@ -17,23 +18,24 @@ export default class Hero {
         this.style = "white"
     }
 
-    move = (keyCode, moveHero, botXY) => {
+    move = (keyCode, moveHero) => {
+        console.log(keyCode)
         switch (keyCode) {
             case 37:
                 this.xPosition -= this.moveLength
-                moveHero(this.xPosition, this.yPosition, botXY)
+                moveHero(this.xPosition, this.yPosition)
                 break
             case 38:
                 this.yPosition -= this.moveLength
-                moveHero(this.xPosition, this.yPosition, botXY)
+                moveHero(this.xPosition, this.yPosition)
                 break
             case 39:
                 this.xPosition += this.moveLength
-                moveHero(this.xPosition, this.yPosition, botXY)
+                moveHero(this.xPosition, this.yPosition)
                 break
             case 40:
                 this.yPosition += this.moveLength
-                moveHero(this.xPosition, this.yPosition, botXY)
+                moveHero(this.xPosition, this.yPosition)
                 break
             default:
                 break

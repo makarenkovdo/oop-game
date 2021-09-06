@@ -4,38 +4,55 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
     exitSetPositionAction,
     itemSetPositionAction,
-    selectExitPosition,
-    selectItemPosition,
+    keyPositionSetPositionAction,
+    levelUpAction,
+    selectHeroPosition,
 } from "../redux/gameSlice"
 import { useEffect } from "react"
+import ProxyItem from "../classes/items/proxyItem"
 
-export default function ItemContainer() {
+export default function ItemContainer(props) {
+    const heroXY = useAppSelector(selectHeroPosition)
+    const keyStatus = useAppSelector((state) => state.game.keyForExit)
+
     // const exitPosition = useAppSelector(selectExitPosition)
     // const itemPosition = useAppSelector(selectItemPosition)
     const dispatch = useAppDispatch()
 
-    const newItem = new BaseItem()
-    const exit = new BaseItem()
-    console.log(newItem.position)
-    console.log(exit.position)
-
-    console.log(exit.position)
+    const newItem = props.newItem
+    const exit = props.exit
+    // const heroXY = props.heroXY
 
     useEffect(() => {
-        dispatch(exitSetPositionAction(exit.position))
-        dispatch(itemSetPositionAction(newItem.position))
+        dispatch(exitSetPositionAction(exit.item.position))
+        dispatch(keyPositionSetPositionAction(newItem.position))
     }, [])
+
+    // if (
+    //     heroXY[0] + 20 >= exit.position[0] &&
+    //     heroXY[0] <= exit.position[0] + 20
+    // ) {
+    //     console.log("check")
+
+    //     if (
+    //         heroXY[1] + 20 >= exit.position[1] &&
+    //         heroXY[1] <= exit.position[1] + 20
+    //     ) {
+    //         dispatch(levelUpAction())
+    //         dispatch(exitSetPositionAction([600, 600]))
+    //     }
+    // }
 
     // dispatch(exitSetPositionAction([exit.position]))
     // dispatch(itemSetPositionAction([newItem.position]))
 
-    console.log(exit)
+    console.log(keyStatus)
 
     return (
         <>
             {/* exit.returnComponent() */}
-            <ItemModel item={exit.position} />
-            <ItemModel item={newItem.position} />
+            {newItem.render()}
+            {exit.render(keyStatus)}
         </>
     )
 }

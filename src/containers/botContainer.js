@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import {
     botMoveAction,
     botSizeInitAction,
+    gameOverAction,
     selectBotPosition,
     selectGameOverStatus,
     selectHeroPosition,
@@ -11,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 export default function BotContainer(props) {
     const gameOverStatus = useAppSelector(selectGameOverStatus)
     const pauseStatus = useAppSelector((state) => state.game.pauseStatus)
+    const botForm = useAppSelector((state) => state.game.botSize)
 
     const bot = props.bot
     const dispatch = useAppDispatch()
@@ -58,6 +60,12 @@ export default function BotContainer(props) {
             newYPosition = yMax - 160
         }
         dispatch(botMoveAction([newXPosition, newYPosition]))
+    }
+
+    if (heroXY[0] + 20 >= botXY[0] && heroXY[0] <= botXY[0] + botForm[0]) {
+        if (heroXY[1] + 20 >= botXY[1] && heroXY[1] <= botXY[1] + botForm[1]) {
+            dispatch(gameOverAction(true))
+        }
     }
 
     return <>{bot.returnComponent(botXY)}</>

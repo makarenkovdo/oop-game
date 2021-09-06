@@ -5,12 +5,15 @@ import "./../styles/gameStyles.css"
 export const newItem = new BaseItem()
 
 export default function ItemModel(props) {
+    console.log(props.color)
     return (
         <div
             className='itemModelStyle'
             style={{
                 top: props.item[1],
                 left: props.item[0],
+                borderColor: props.color,
+
                 // backgroundColor: props.item[2]
             }}
         ></div>

@@ -9,6 +9,8 @@
 
 .modalStyle {
     position: absolute;
+    top: 10%;
+    left: 30%;
     width: 500px;
     height: 500px;
     background-color: grey;
@@ -50,10 +52,10 @@
 }
 
 .itemModelStyle {
-    border: 1px solid whitesmoke;
     width: 16px;
     height: 16px;
     position: absolute;
+    border: 1px solid;
 }
 
 .header {

@@ -1,4 +1,7 @@
-import ItemContainer from "../../containers/itemContainer"
+import { useAppDispatch } from "../../app/hooks"
+import ItemModel from "../../components/ItemModel"
+import ItemContainer from "../../containers/itemInit"
+import { heroMoveAction } from "../../redux/gameSlice"
 
 export default class BaseItem {
     constructor() {
@@ -8,7 +11,7 @@ export default class BaseItem {
         ]
     }
 
-    returnComponent() {
-        return <ItemContainer item={this.position} />
+    render() {
+        return <ItemModel item={this.position} color={"white"} />
     }
 }

@@ -8,34 +8,29 @@ import {
     exitSetPositionAction,
     gameOverAction,
     heroMoveAction,
+    keyForExitAction,
     levelUpAction,
-    selectBotPosition,
     selectExitPosition,
     selectGameOverStatus,
     selectHeroPosition,
 } from "../redux/gameSlice"
+import GameOverModal from "../components/GameOverModal"
 
 export default function Game(props) {
     const heroXY = useAppSelector(selectHeroPosition)
-    const botXY = useAppSelector(selectBotPosition)
-    const botForm = useAppSelector((state) => state.game.botSize)
-
+    const keyPosition = useAppSelector((state) => state.game.keyPosition)
     const exitPosition = useAppSelector(selectExitPosition)
     const gameOverState = useAppSelector(selectGameOverStatus)
 
     const dispatch = useAppDispatch()
-    const newHero = new Hero()
-
+    const newHero = props.newHero
     const handleUserKeyPress = useCallback((event) => {
         const { keyCode } = event
         if (keyCode >= 37 && keyCode <= 40) {
-            newHero.move(keyCode, moveHero, heroXY)
+            newHero.move(keyCode, moveHero)
         }
     }, [])
-
-    useEffect(() => {
-        window.addEventListener("keydown", handleUserKeyPress)
-    })
+    window.addEventListener("keydown", handleUserKeyPress)
 
     const moveHero = (xPosition, yPosition) => {
         let newXPosition = xPosition
@@ -57,68 +52,52 @@ export default function Game(props) {
         }
         dispatch(heroMoveAction([newXPosition, newYPosition]))
         newHero.getPose(newXPosition, newYPosition)
-    }
-
-    if (exitPosition[0] === heroXY[0] && exitPosition[1] === heroXY[1]) {
-        console.log("hooray")
-        dispatch(levelUpAction())
-        dispatch(exitSetPositionAction([600, 600]))
+        console.log(newHero.xPosition)
     }
 
     if (
-        heroXY[0] + newHero.size[0] >= exitPosition[0] &&
+        heroXY[0] + 20 >= exitPosition[0] &&
         heroXY[0] <= exitPosition[0] + 20
     ) {
         if (
-            heroXY[1] + newHero.size[1] >= exitPosition[1] &&
+            heroXY[1] + 20 >= exitPosition[1] &&
             heroXY[1] <= exitPosition[1] + 20
         ) {
             dispatch(levelUpAction())
             dispatch(exitSetPositionAction([600, 600]))
+            dispatch(keyForExitAction(false))
         }
     }
 
-    if (
-        heroXY[0] + newHero.size[0] >= botXY[0] &&
-        heroXY[0] <= botXY[0] + botForm[0]
-    ) {
+    if (heroXY[0] + 20 >= keyPosition[0] && heroXY[0] <= keyPosition[0] + 20) {
         if (
-            heroXY[1] + newHero.size[1] >= botXY[1] &&
-            heroXY[1] <= botXY[1] + botForm[1]
+            heroXY[1] + 20 >= keyPosition[1] &&
+            heroXY[1] <= keyPosition[1] + 20
         ) {
-            dispatch(gameOverAction(true))
+            dispatch(keyForExitAction(true))
         }
     }
+
+    // if (exitPosition[0] === heroXY[0] && exitPosition[1] === heroXY[1]) {
+    //     console.log("hooray")
+    //     dispatch(levelUpAction())
+    //     dispatch(exitSetPositionAction([600, 600]))
+    // }
+
+    // if (keyPosition[0] === heroXY[0] && keyPosition[1] === heroXY[1]) {
+    //     console.log("keyPosition")
+    //     dispatch(keyForExitAction(true))
+    // }
 
     const gameOverSwitcher = (gameOverStatus) => {
         dispatch(gameOverAction(false))
     }
 
-    const gameOverModal = () => {
-        return (
-            <div className='modalStyle'>
-                Game over!
-                <button onClick={() => gameOverSwitcher(false)}>
-                    TRYYYY Again!
-                </button>
-            </div>
-        )
-    }
-
-    if (gameOverState) {
-        gameOverModal()
-    }
-
     return gameOverState ? (
-        <div className='modalStyle'>
-            Game over!
-            <button onClick={() => gameOverSwitcher(false)}>
-                TRYYYY Again!
-            </button>
-        </div>
+        <GameOverModal />
     ) : (
         <div>
-            <HeroModel heroXY={[...heroXY]} heroSize={newHero.size} />
+            <HeroModel heroXY={heroXY} heroSize={newHero.size} />
         </div>
     )
 }

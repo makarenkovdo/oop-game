@@ -1,14 +1,26 @@
 import React from "react"
 import "./App.css"
-import ItemContainer from "./containers/itemContainer"
+import ItemInit from "./containers/itemInit"
 import Game from "./containers/game"
 import Level1BotWrapper from "./containers/botInit"
 import { useAppSelector } from "./app/hooks"
 import Header from "./components/Header"
 import GameArea from "./components/GameArea"
+import HeroInit from "./containers/heroInit"
+import Hero from "./classes/hero"
 
 function App() {
+    const secondHero = new Hero()
+    console.log(secondHero.xPosition)
     const startStatus = useAppSelector((state) => state.game.startStatus)
+    let x = 10
+    console.log(x)
+    function change(vari) {
+        x += 25
+        console.log(x)
+    }
+    console.log(x)
+
     console.log("before Level")
     // const levelState = useAppSelector(selectLevel)
     // function renderSwitch(levelState) {
@@ -26,10 +38,10 @@ function App() {
         <Level1BotWrapper />
     ) : (
         <>
-            <GameArea />
             <Header />
-            <Game />
-            <ItemContainer />
+            <GameArea />
+            <HeroInit secondHero={secondHero} change={change} />
+            <ItemInit />
             <Level1BotWrapper />
             {/* {renderSwitch(levelState)} */}
         </>
