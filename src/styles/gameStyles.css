@@ -1,0 +1,65 @@
+.squareStyle {
+    display: grid;
+    /* background-color: ${colour}; */
+    /* border: 1px solid whitesmoke; */
+    /* width: 20px; */
+    /* height: 15px; */
+    font-size: 7px;
+}
+
+.modalStyle {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: grey;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.containerStyle {
+    display: grid;
+    background-image: url("https://images.theconversation.com/files/145445/original/image-20161110-21844-w84scr.jpg");
+    height: 100vh;
+    width: 100vw;
+    grid-template-columns: repeat(30, 1fr);
+    font-size: 10px;
+    color: white;
+    background-size: 100%;
+}
+
+.heroModelStyle {
+    background-color: yellow;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.7);
+    border-right: 2px solid rgba(128, 128, 128, 0.2);
+    border-top: 2px solid rgba(128, 128, 128, 0.2);
+    border-left: 2px solid rgba(128, 128, 128, 0.7);
+    /* width: 16px; 
+        height: 16px;  */
+    position: absolute;
+}
+
+.botModelStyle {
+    background-color: red;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.7);
+    border-right: 2px solid rgba(128, 128, 128, 0.2);
+    border-top: 2px solid rgba(128, 128, 128, 0.2);
+    border-left: 2px solid rgba(128, 128, 128, 0.7);
+    /* width: 16px;
+    height: 16px; */
+    position: absolute;
+}
+
+.itemModelStyle {
+    border: 1px solid whitesmoke;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+}
+
+.header {
+    display: inline;
+    position: absolute;
+    justify-content: center;
+    justify-self: center;
+    height: 50px;
+}
