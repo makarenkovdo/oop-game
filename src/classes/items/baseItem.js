@@ -1,7 +1,4 @@
-import { useAppDispatch } from "../../app/hooks"
 import ItemModel from "../../components/ItemModel"
-import ItemContainer from "../../containers/itemInit"
-import { heroMoveAction } from "../../redux/gameSlice"
 
 export default class BaseItem {
     constructor() {

@@ -4,8 +4,6 @@ import "./../styles/gameStyles.css"
 import { initialState } from "../redux/gameSlice"
 
 export default function GameOverModal() {
-    console.log("inside modal!")
-    console.log(initialState)
     const dispatch = useAppDispatch()
     const gameRestart = () => {
         dispatch(gameOverAction(false))

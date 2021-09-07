@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef } from "react"
 import "./../styles/gameStyles.css"
-import GameArea from "../components/GameArea"
-import Hero from "../classes/hero"
 import HeroModel from "../components/HeroModel"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
+    boosterStatusAction,
     exitSetPositionAction,
     gameOverAction,
     heroMoveAction,
@@ -21,6 +20,9 @@ export default function Game(props) {
     const keyPosition = useAppSelector((state) => state.game.keyPosition)
     const exitPosition = useAppSelector(selectExitPosition)
     const gameOverState = useAppSelector(selectGameOverStatus)
+    const boosterPosition = useAppSelector(
+        (state) => state.game.boosterPosition
+    )
 
     const dispatch = useAppDispatch()
     const newHero = props.newHero
@@ -52,42 +54,46 @@ export default function Game(props) {
         }
         dispatch(heroMoveAction([newXPosition, newYPosition]))
         newHero.getPose(newXPosition, newYPosition)
-        console.log(newHero.xPosition)
     }
 
     if (
-        heroXY[0] + 20 >= exitPosition[0] &&
+        heroXY[0] + newHero.size[0] >= exitPosition[0] &&
         heroXY[0] <= exitPosition[0] + 20
     ) {
         if (
-            heroXY[1] + 20 >= exitPosition[1] &&
+            heroXY[1] + newHero.size[0] >= exitPosition[1] &&
             heroXY[1] <= exitPosition[1] + 20
         ) {
             dispatch(levelUpAction())
             dispatch(exitSetPositionAction([600, 600]))
             dispatch(keyForExitAction(false))
+            dispatch(boosterStatusAction(false))
         }
     }
 
-    if (heroXY[0] + 20 >= keyPosition[0] && heroXY[0] <= keyPosition[0] + 20) {
+    if (
+        heroXY[0] + newHero.size[0] >= keyPosition[0] &&
+        heroXY[0] <= keyPosition[0] + 20
+    ) {
         if (
-            heroXY[1] + 20 >= keyPosition[1] &&
+            heroXY[1] + newHero.size[0] >= keyPosition[1] &&
             heroXY[1] <= keyPosition[1] + 20
         ) {
             dispatch(keyForExitAction(true))
         }
     }
 
-    // if (exitPosition[0] === heroXY[0] && exitPosition[1] === heroXY[1]) {
-    //     console.log("hooray")
-    //     dispatch(levelUpAction())
-    //     dispatch(exitSetPositionAction([600, 600]))
-    // }
-
-    // if (keyPosition[0] === heroXY[0] && keyPosition[1] === heroXY[1]) {
-    //     console.log("keyPosition")
-    //     dispatch(keyForExitAction(true))
-    // }
+    if (
+        heroXY[0] + newHero.size[0] >= boosterPosition[0] &&
+        heroXY[0] <= boosterPosition[0] + 20
+    ) {
+        if (
+            heroXY[1] + newHero.size[1] >= boosterPosition[1] &&
+            heroXY[1] <= boosterPosition[1] + 20
+        ) {
+            dispatch(boosterStatusAction(true))
+        }
+    }
 
     const gameOverSwitcher = (gameOverStatus) => {
         dispatch(gameOverAction(false))

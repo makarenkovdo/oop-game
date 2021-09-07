@@ -1,6 +1,5 @@
 export default class MoveHard {
     move = (direction, moveBot, moveLength, position, heroPosition) => {
-        console.log(position, heroPosition)
         const newPosition = [...position]
         if (
             heroPosition[0] < newPosition[0] &&

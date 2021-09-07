@@ -1,7 +1,11 @@
 import { useAppSelector } from "../app/hooks"
 import BaseItem from "../classes/items/baseItem"
 import ExitModel from "../components/ExitModel"
-import { exitSetPositionAction, levelUpAction, selectHeroPosition } from "../redux/gameSlice"
+import {
+    exitSetPositionAction,
+    levelUpAction,
+    selectHeroPosition,
+} from "../redux/gameSlice"
 
 // IT'S NOT WORKING FILE!!! DELETE???
 
@@ -11,7 +15,6 @@ export default function ExitContainer() {
     const exitItem = new BaseItem(700, 700)
 
     if (
-      console.log('check');
         heroXY[0] + 20 >= exitItem.position[0] &&
         heroXY[0] <= exitItem.position[0] + 20
     ) {

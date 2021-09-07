@@ -11,9 +11,11 @@ export interface GameState {
     bot2Size: number[]
     exitPosition: number[]
     keyPosition: number[]
+    boosterPosition: number[]
     startStatus: boolean
     pauseStatus: boolean
     saveStatus: boolean
+    boosterStatus: boolean
     keyForExit: boolean
 }
 
@@ -27,9 +29,11 @@ export const initialState: GameState = {
     bot2Size: [0, 0],
     exitPosition: [],
     keyPosition: [0, 0],
+    boosterPosition: [0, 0],
     pauseStatus: false,
     saveStatus: false,
     startStatus: false,
+    boosterStatus: false,
     keyForExit: false,
 }
 
@@ -54,14 +58,13 @@ export const gameSlice = createSlice({
             state.startStatus = true
         },
         keyForExitAction: (state, action: PayloadAction<boolean>) => {
-            console.log("keyReducer")
-
             state.keyForExit = action.payload
+        },
+        boosterStatusAction: (state, action: PayloadAction<boolean>) => {
+            state.boosterStatus = action.payload
         },
         heroMoveAction: (state, action: PayloadAction<number[]>) => {
             state.heroPosition = action.payload
-            console.log("heroReducer")
-            console.log(action.payload)
         },
         botMoveAction: (state, action: PayloadAction<number[]>) => {
             state.botPosition = action.payload
@@ -83,6 +86,9 @@ export const gameSlice = createSlice({
         },
         exitSetPositionAction: (state, action: PayloadAction<number[]>) => {
             state.exitPosition = action.payload
+        },
+        boosterSetPositionAction: (state, action: PayloadAction<number[]>) => {
+            state.boosterPosition = action.payload
         },
 
         loadStateAction: (state, action: PayloadAction<GameState>) => {
@@ -121,6 +127,8 @@ export const {
     pauseStatusAction,
     startStatusAction,
     keyForExitAction,
+    boosterSetPositionAction,
+    boosterStatusAction,
 } = gameSlice.actions
 
 // The function below is called a selector and allows us to select a value from

@@ -21,7 +21,6 @@ export default class Command {
         this.strategy3 = moveHard
     }
     execute(command) {
-        console.log(this.form3)
         switch (command) {
             case 1:
                 return this.subject.create(

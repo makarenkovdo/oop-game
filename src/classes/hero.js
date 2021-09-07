@@ -19,7 +19,6 @@ export default class Hero {
     }
 
     move = (keyCode, moveHero) => {
-        console.log(keyCode)
         switch (keyCode) {
             case 37:
                 this.xPosition -= this.moveLength

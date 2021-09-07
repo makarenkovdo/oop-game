@@ -4,17 +4,13 @@ export default class SaveLoad {
     }
     save(state) {
         localStorage.clear()
-        console.log(state)
         let i = 0
         for (i in state) {
-            console.log(i, state[i])
             localStorage.setItem(i, state[i])
         }
-        console.log(localStorage)
         return new SaveLoad(state)
     }
     load() {
-        let i = 0
         let obj = {}
 
         for (let i = 0; i < localStorage.length; i++) {
@@ -31,15 +27,12 @@ export default class SaveLoad {
                 value = stringValue.split(",")
                 resValue = value.map(Number)
             } else if (key === "level") {
-                console.log(resValue)
                 resValue = +resValue[0]
             } else {
                 resValue = stringValue === "true"
             }
             obj[key] = resValue
-            console.log(key, stringValue, value, obj)
         }
-        console.log(obj)
         return obj
     }
 }

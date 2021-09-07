@@ -10,18 +10,8 @@ import HeroInit from "./containers/heroInit"
 import Hero from "./classes/hero"
 
 function App() {
-    const secondHero = new Hero()
-    console.log(secondHero.xPosition)
     const startStatus = useAppSelector((state) => state.game.startStatus)
-    let x = 10
-    console.log(x)
-    function change(vari) {
-        x += 25
-        console.log(x)
-    }
-    console.log(x)
 
-    console.log("before Level")
     // const levelState = useAppSelector(selectLevel)
     // function renderSwitch(levelState) {
     //     console.log("here")
@@ -40,7 +30,7 @@ function App() {
         <>
             <Header />
             <GameArea />
-            <HeroInit secondHero={secondHero} change={change} />
+            <HeroInit />
             <ItemInit />
             <Level1BotWrapper />
             {/* {renderSwitch(levelState)} */}

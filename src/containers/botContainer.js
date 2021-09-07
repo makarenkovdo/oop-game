@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import {
+    boosterStatusAction,
     botMoveAction,
     botSizeInitAction,
     gameOverAction,
@@ -8,11 +9,14 @@ import {
     selectHeroPosition,
 } from "../redux/gameSlice"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
+import BoosterDecorator from "../classes/bots/decorators/boosterDecorator"
 
 export default function BotContainer(props) {
     const gameOverStatus = useAppSelector(selectGameOverStatus)
     const pauseStatus = useAppSelector((state) => state.game.pauseStatus)
     const botForm = useAppSelector((state) => state.game.botSize)
+    const boosterStatus = useAppSelector((state) => state.game.boosterStatus)
+    const heroSize = useAppSelector((state) => state.game.heroSize)
 
     const bot = props.bot
     const dispatch = useAppDispatch()
@@ -21,6 +25,11 @@ export default function BotContainer(props) {
     // const [botXY, setBotXY] = useState([100,100])
     const botXY = useAppSelector(selectBotPosition)
     const heroXY = useAppSelector(selectHeroPosition)
+
+    if (boosterStatus) {
+        const boosterBot = new BoosterDecorator(bot)
+        dispatch(boosterStatusAction(false))
+    }
 
     useEffect(() => {
         dispatch(botSizeInitAction(bot.form))
@@ -62,8 +71,8 @@ export default function BotContainer(props) {
         dispatch(botMoveAction([newXPosition, newYPosition]))
     }
 
-    if (heroXY[0] + 20 >= botXY[0] && heroXY[0] <= botXY[0] + botForm[0]) {
-        if (heroXY[1] + 20 >= botXY[1] && heroXY[1] <= botXY[1] + botForm[1]) {
+    if (heroXY[0] + 30 >= botXY[0] && heroXY[0] <= botXY[0] + botForm[0]) {
+        if (heroXY[1] + 30 >= botXY[1] && heroXY[1] <= botXY[1] + botForm[1]) {
             dispatch(gameOverAction(true))
         }
     }
