@@ -1,4 +1,4 @@
-import BaseBot from "../baseBot"
+import BaseBot from "../baseBotClass"
 
 export default class Shooter extends BaseBot {
     constructor(form) {
@@ -10,7 +10,6 @@ export default class Shooter extends BaseBot {
     shoot = (direction, moveBot, moveLength) => {
         // console.lo);
         if (direction <= 2.5) {
-            return
             moveBot(this.xPosition, this.yPosition)
         } else if (direction >= 2.5 && direction <= 5) {
             this.yPosition -= moveLength

@@ -1,4 +1,4 @@
-export default class MoveEasyStrategy {
+export default class MoveRandom {
     move = (direction, moveBot, moveLength, position) => {
         const newPosition = [...position]
         if (direction <= 2.5) {

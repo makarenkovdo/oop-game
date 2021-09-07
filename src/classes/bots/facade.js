@@ -1,9 +1,9 @@
 import MoversFactory from "./botFactory/moversFactory"
 import Command from "./command"
 import FormsFactory from "./forms/formsFactory"
-import MoveEasyStrategy from "./strategies/moveEasy"
-import MoveHard from "./strategies/moveHard"
-import MoveNormal from "./strategies/moveNormal"
+import MoveRandom from "./strategies/moveRandom"
+import MoveEightDirections from "./strategies/moveEightDirections"
+import MoveFourDirections from "./strategies/moveFourDirections"
 
 export default class CommanderCreatingFacade {
     constructor() {
@@ -17,9 +17,9 @@ export default class CommanderCreatingFacade {
         this.form1 = this.formsFactory.create("smallSquare")
         this.form2 = this.formsFactory.create("bigSquare")
         this.form3 = this.formsFactory.create("highLine")
-        this.strategy1 = new MoveEasyStrategy()
-        this.strategy2 = new MoveNormal()
-        this.strategy3 = new MoveHard()
+        this.strategy1 = new MoveRandom()
+        this.strategy2 = new MoveEightDirections()
+        this.strategy3 = new MoveFourDirections()
     }
 
     createCommander() {

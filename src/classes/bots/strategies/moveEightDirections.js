@@ -1,4 +1,4 @@
-export default class MoveHard {
+export default class MoveEightDirections {
     move = (direction, moveBot, moveLength, position, heroPosition) => {
         const newPosition = [...position]
         if (

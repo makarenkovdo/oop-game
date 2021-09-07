@@ -1,4 +1,4 @@
-export default class MoveNormal {
+export default class MoveFourDirections {
     move = (direction, moveBot, moveLength, position, heroPosition) => {
         const newPosition = [...position]
         if (heroPosition[0] < newPosition[0]) {
