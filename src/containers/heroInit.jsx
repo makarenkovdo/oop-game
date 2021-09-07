@@ -3,9 +3,6 @@ import Hero from "../classes/hero"
 import Game from "./game"
 
 export default function HeroInit(props) {
-    props.secondHero.getPose(500, 500)
-    props.change()
-
     const newHero = new Hero()
 
     return (
