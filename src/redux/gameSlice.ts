@@ -2,8 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../app/store"
 
 export interface GameState {
+    startStatus: boolean
+    difficultyStatus: number
+    heroName: string
     level: number
     gameOverStatus: boolean
+
     heroPosition: number[]
     botPosition: number[]
     bot2Position: number[]
@@ -16,7 +20,6 @@ export interface GameState {
     exitPosition: number[]
     keyPosition: number[]
     boosterPosition: number[]
-    startStatus: boolean
     pauseStatus: boolean
     saveStatus: boolean
     boosterStatus: boolean
@@ -24,6 +27,9 @@ export interface GameState {
 }
 
 export const initialState: GameState = {
+    startStatus: false,
+    difficultyStatus: 0,
+    heroName: "Ordinary Hero",
     level: 1,
     gameOverStatus: false,
 
@@ -43,7 +49,7 @@ export const initialState: GameState = {
 
     pauseStatus: false,
     saveStatus: false,
-    startStatus: false,
+
     boosterStatus: false,
     keyForExit: false,
 }
@@ -52,6 +58,16 @@ export const gameSlice = createSlice({
     name: "game",
     initialState,
     reducers: {
+        difficultyStatusAction: (state, action: PayloadAction<number>) => {
+            state.difficultyStatus = action.payload
+        },
+        heroNameAction: (state, action: PayloadAction<string>) => {
+            state.heroName = action.payload
+        },
+        startStatusAction: (state) => {
+            state.startStatus = true
+        },
+
         levelUpAction: (state) => {
             state.level += 1
         },
@@ -65,9 +81,7 @@ export const gameSlice = createSlice({
         pauseStatusAction: (state, action: PayloadAction<boolean>) => {
             state.pauseStatus = action.payload
         },
-        startStatusAction: (state) => {
-            state.startStatus = true
-        },
+
         keyForExitAction: (state, action: PayloadAction<boolean>) => {
             state.keyForExit = action.payload
         },
@@ -130,6 +144,7 @@ export const gameSlice = createSlice({
 })
 
 export const {
+    difficultyStatusAction,
     levelUpAction,
     gameOverAction,
     heroMoveAction,
@@ -148,6 +163,7 @@ export const {
     boosterStatusAction,
     itemSizeInitAction,
     heroSizeInitAction,
+    heroNameAction,
 } = gameSlice.actions
 
 // The function below is called a selector and allows us to select a value from

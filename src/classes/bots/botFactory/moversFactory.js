@@ -8,7 +8,7 @@ export default class MoversFactory {
             case "simpleMover":
                 return new Mover(10, [300, 300], 30, form, strategy)
             case "jumper":
-                return new Mover(1, [300, 300], 7, form, strategy)
+                return new Mover(2, [300, 300], 14, form, strategy)
             default:
                 return false
         }

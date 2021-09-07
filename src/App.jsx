@@ -8,6 +8,7 @@ import GameArea from "./components/GameArea"
 import HeroInit from "./containers/heroInit"
 import { cpuUsage } from "process"
 import CollisionCheckerContainer from "./containers/collisionCheckerContainer"
+import MainMenu from "./components/MainMenu"
 
 function App() {
     const startStatus = useAppSelector((state) => state.game.startStatus)
@@ -24,8 +25,11 @@ function App() {
     //             return false
     //     }
     // }
-    return startStatus ? (
-        <Level1BotWrapper />
+    return !startStatus ? (
+        <>
+            <MainMenu />
+            <GameArea />
+        </>
     ) : (
         <>
             <Header />

@@ -1,3 +1,20 @@
+.mainMenuContent {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(22, 25, 26, 0.5);
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    color: black;
+    -webkit-text-stroke: 1px whitesmoke;
+    font-size: 20px;
+}
+
 .squareStyle {
     display: grid;
     /* background-color: ${colour}; */
