@@ -6,9 +6,9 @@ export default class MoversFactory {
     create(type, form, strategy) {
         switch (type) {
             case "simpleMover":
-                return new Mover(20, [300, 300], 60, form, strategy)
+                return new Mover(10, [300, 300], 30, form, strategy)
             case "jumper":
-                return new Mover(40, [300, 300], 500, form, strategy)
+                return new Mover(1, [300, 300], 7, form, strategy)
             default:
                 return false
         }

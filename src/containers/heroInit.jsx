@@ -4,7 +4,6 @@ import Game from "./game"
 
 export default function HeroInit(props) {
     const newHero = new Hero()
-
     return (
         <>
             {/* <App /> */}

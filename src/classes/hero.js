@@ -6,16 +6,16 @@ export default class Hero {
         yPosition = 0,
         level = 0,
         moveLength = 20,
-        size = [38, 38]
+        size = [40, 40]
     ) {
         this.personName = personName
         this.xPosition = xPosition
         this.yPosition = yPosition
         this.size = size
-
         this.moveLength = moveLength
         this.level = level
-        this.style = "white"
+        this.color = "white"
+        this.borderWidth = 4
     }
 
     move = (keyCode, moveHero) => {

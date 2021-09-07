@@ -8,14 +8,50 @@
 }
 
 .modalStyle {
+    display: flex;
+    justify-items: center;
+    align-items: center;
     position: absolute;
     top: 10%;
     left: 30%;
     width: 500px;
     height: 500px;
-    background-color: grey;
+    background-color: rgba(22, 25, 26, 0.5);
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.modalContainer {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(22, 25, 26, 0.5);
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+}
+
+.modalContent {
+    color: white;
+    position: relative;
+    font-size: 30px;
+}
+
+.modalButton {
+    border: 4px solid whitesmoke;
+    border-radius: 5px;
+    color: whitesmoke;
+    width: 70px;
+    height: 50px;
+    background-color: rgb(26, 29, 29);
+}
+
+.modalButton:hover {
+    background-color: #63636370;
 }
 
 .containerStyle {
@@ -31,29 +67,31 @@
 
 .heroModelStyle {
     background-color: yellow;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.7);
-    border-right: 2px solid rgba(128, 128, 128, 0.2);
-    border-top: 2px solid rgba(128, 128, 128, 0.2);
-    border-left: 2px solid rgba(128, 128, 128, 0.7);
-    /* width: 16px; 
-        height: 16px;  */
+    border-bottom: solid rgba(128, 128, 128, 0.7);
+    border-right: solid rgba(128, 128, 128, 0.2);
+    border-top: solid rgba(128, 128, 128, 0.2);
+    border-left: solid rgba(128, 128, 128, 0.7);
+    position: absolute;
+}
+
+.botModelStyle {
+    border-bottom: solid rgba(128, 128, 128, 0.7);
+    border-right: solid rgba(128, 128, 128, 0.2);
+    border-top: solid rgba(128, 128, 128, 0.2);
+    border-left: solid rgba(128, 128, 128, 0.7);
     position: absolute;
 }
 
 .botModelStyle {
     background-color: red;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.7);
-    border-right: 2px solid rgba(128, 128, 128, 0.2);
-    border-top: 2px solid rgba(128, 128, 128, 0.2);
-    border-left: 2px solid rgba(128, 128, 128, 0.7);
-    /* width: 16px;
-    height: 16px; */
+    border-bottom: solid rgba(128, 128, 128, 0.7);
+    border-right: solid rgba(128, 128, 128, 0.2);
+    border-top: solid rgba(128, 128, 128, 0.2);
+    border-left: solid rgba(128, 128, 128, 0.7);
     position: absolute;
 }
 
 .itemModelStyle {
-    width: 16px;
-    height: 16px;
     position: absolute;
     border: 1px solid;
 }

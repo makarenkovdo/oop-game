@@ -6,9 +6,16 @@ export default class BaseItem {
             Math.ceil(Math.random() * 0.7 * window.screen.width + 50),
             Math.ceil(Math.random() * 0.7 * window.screen.height + 50),
         ]
+        this.size = [20, 20]
     }
 
     render() {
-        return <ItemModel item={this.position} color={"white"} />
+        return (
+            <ItemModel
+                position={this.position}
+                color={"white"}
+                size={this.size}
+            />
+        )
     }
 }

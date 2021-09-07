@@ -13,6 +13,7 @@ function HeroModel(props) {
                 left: props.heroXY[0],
                 width: props.heroSize[0],
                 height: props.heroSize[1],
+                borderInlineWidth: 4,
             }}
         ></div>
     )

@@ -1,13 +1,13 @@
 import React from "react"
 import "./App.css"
 import ItemInit from "./containers/itemInit"
-import Game from "./containers/game"
 import Level1BotWrapper from "./containers/botInit"
 import { useAppSelector } from "./app/hooks"
 import Header from "./components/Header"
 import GameArea from "./components/GameArea"
 import HeroInit from "./containers/heroInit"
-import Hero from "./classes/hero"
+import { cpuUsage } from "process"
+import CollisionCheckerContainer from "./containers/collisionCheckerContainer"
 
 function App() {
     const startStatus = useAppSelector((state) => state.game.startStatus)
@@ -33,6 +33,7 @@ function App() {
             <HeroInit />
             <ItemInit />
             <Level1BotWrapper />
+            <CollisionCheckerContainer />
             {/* {renderSwitch(levelState)} */}
         </>
     )

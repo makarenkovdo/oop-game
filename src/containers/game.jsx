@@ -7,6 +7,7 @@ import {
     exitSetPositionAction,
     gameOverAction,
     heroMoveAction,
+    heroSizeInitAction,
     keyForExitAction,
     levelUpAction,
     selectExitPosition,
@@ -26,6 +27,7 @@ export default function Game(props) {
 
     const dispatch = useAppDispatch()
     const newHero = props.newHero
+    dispatch(heroSizeInitAction(newHero.size))
     const handleUserKeyPress = useCallback((event) => {
         const { keyCode } = event
         if (keyCode >= 37 && keyCode <= 40) {
@@ -56,48 +58,9 @@ export default function Game(props) {
         newHero.getPose(newXPosition, newYPosition)
     }
 
-    if (
-        heroXY[0] + newHero.size[0] >= exitPosition[0] &&
-        heroXY[0] <= exitPosition[0] + 20
-    ) {
-        if (
-            heroXY[1] + newHero.size[0] >= exitPosition[1] &&
-            heroXY[1] <= exitPosition[1] + 20
-        ) {
-            dispatch(levelUpAction())
-            dispatch(exitSetPositionAction([600, 600]))
-            dispatch(keyForExitAction(false))
-            dispatch(boosterStatusAction(false))
-        }
-    }
-
-    if (
-        heroXY[0] + newHero.size[0] >= keyPosition[0] &&
-        heroXY[0] <= keyPosition[0] + 20
-    ) {
-        if (
-            heroXY[1] + newHero.size[0] >= keyPosition[1] &&
-            heroXY[1] <= keyPosition[1] + 20
-        ) {
-            dispatch(keyForExitAction(true))
-        }
-    }
-
-    if (
-        heroXY[0] + newHero.size[0] >= boosterPosition[0] &&
-        heroXY[0] <= boosterPosition[0] + 20
-    ) {
-        if (
-            heroXY[1] + newHero.size[1] >= boosterPosition[1] &&
-            heroXY[1] <= boosterPosition[1] + 20
-        ) {
-            dispatch(boosterStatusAction(true))
-        }
-    }
-
-    const gameOverSwitcher = (gameOverStatus) => {
-        dispatch(gameOverAction(false))
-    }
+    // const gameOverSwitcher = (gameOverStatus) => {
+    //     dispatch(gameOverAction(false))
+    // }
 
     return gameOverState ? (
         <GameOverModal />

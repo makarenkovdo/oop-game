@@ -1,10 +1,10 @@
 import MoversFactory from "./botFactory/moversFactory"
-import BaseBot from "./bots/baseBotClass"
+import BaseBot from "./baseBotClass"
 import Command from "./command"
 import FormsFactory from "./forms/formsFactory"
-import MoveEasyStrategy from "./strategies/moveEasy"
-import MoveHard from "./strategies/moveHard"
-import MoveNormal from "./strategies/moveNormal"
+import MoveRandom from "./strategies/moveRandom"
+import MoveFourDirections from "./strategies/moveFourDirections"
+import MoveEightDirections from "./strategies/moveEightDirections"
 
 export default class BossBuilder {
     constructor() {
@@ -18,29 +18,29 @@ export default class BossBuilder {
         this.botType1 = "simpleMover"
         this.botType2 = "jumper"
         this.formsFactory = new FormsFactory()
-        this.strategy1 = new MoveEasyStrategy()
-        this.strategy2 = new MoveNormal()
-        this.strategy3 = new MoveHard()
+        this.strategy1 = new MoveRandom()
+        this.strategy2 = new MoveFourDirections()
+        this.strategy3 = new MoveEightDirections()
     }
 
-    FormSmall() {
+    formSmall() {
         this.form = this.formsFactory.create("smallSquare")
         return this
     }
-    FormBig() {
+    formBig() {
         this.form = this.formsFactory.create("bigSquare")
         return this
     }
-    ActionTypeMover() {
+    actionTypeMover() {
         this.actionType = new this.MoversFactory()
         return this
     }
-    StrategyEasy() {
-        this.strategy = new MoveEasyStrategy()
+    strategyEasy() {
+        this.strategy = new MoveRandom()
         return this
     }
-    StrategyNormal() {
-        this.strategy = new MoveNormal()
+    strategyNormal() {
+        this.strategy = this.strategy2
         return this
     }
     createSimple() {

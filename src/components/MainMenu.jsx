@@ -5,7 +5,7 @@ export default function MainMenu() {
         <div>
             <form id='form'>
                 <div>
-                    <input type='radio' name='age' value='10' />
+                    <input onSelect type='radio' name='age' value='10' />
                     Easy
                 </div>
                 <div>

@@ -1,7 +1,8 @@
-export default class FormLine {
-    constructor(array) {
+export default class FormBaseClass {
+    constructor(array, color) {
         this.height = array[0]
         this.width = array[1]
+        this.color = color
     }
 
     getForm() {

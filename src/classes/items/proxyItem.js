@@ -10,8 +10,9 @@ export default class ProxyItem {
             case false:
                 return (
                     <ItemModel
-                        item={this.item.position}
+                        position={this.item.position}
                         color={"transparent"}
+                        size={this.item.size}
                     />
                 )
             case true:

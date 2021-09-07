@@ -2,10 +2,12 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
     boosterSetPositionAction,
     exitSetPositionAction,
+    itemSizeInitAction,
     keyPositionSetPositionAction,
     selectHeroPosition,
 } from "../redux/gameSlice"
 import { useEffect } from "react"
+import ItemModel from "../components/ItemModel"
 
 export default function ItemContainer(props) {
     const heroXY = useAppSelector(selectHeroPosition)
@@ -18,6 +20,8 @@ export default function ItemContainer(props) {
     const keyItem = props.keyItem
     const exit = props.exit
     const booster = props.booster
+
+    dispatch(itemSizeInitAction(exit.item.size))
 
     // const heroXY = props.heroXY
 
@@ -48,6 +52,22 @@ export default function ItemContainer(props) {
     return (
         <>
             {/* exit.returnComponent() */}
+            {/* <ItemModel
+                position={keyItem.position}
+                color={"white"}
+                size={keyItem.size}
+            />
+            <ItemModel
+                position={exit.item.position}
+                color={"white"}
+                size={exit.item.size}
+            />
+            <ItemModel
+                position={booster.position}
+                color={"white"}
+                size={booster.size}
+            /> */}
+
             {props.booster.render()}
             {keyItem.render()}
             {exit.render(keyStatus)}

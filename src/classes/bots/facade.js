@@ -2,8 +2,8 @@ import MoversFactory from "./botFactory/moversFactory"
 import Command from "./command"
 import FormsFactory from "./forms/formsFactory"
 import MoveRandom from "./strategies/moveRandom"
-import MoveEightDirections from "./strategies/moveEightDirections"
 import MoveFourDirections from "./strategies/moveFourDirections"
+import MoveEightDirections from "./strategies/moveEightDirections"
 
 export default class CommanderCreatingFacade {
     constructor() {

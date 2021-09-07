@@ -10,21 +10,24 @@ import {
 } from "../redux/gameSlice"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import BoosterDecorator from "../classes/bots/decorators/boosterDecorator"
+import CollisionChecker from "../classes/collisionChecker"
 
 export default function BotContainer(props) {
     const gameOverStatus = useAppSelector(selectGameOverStatus)
     const pauseStatus = useAppSelector((state) => state.game.pauseStatus)
-    const botForm = useAppSelector((state) => state.game.botSize)
     const boosterStatus = useAppSelector((state) => state.game.boosterStatus)
+    const collisionChecker = new CollisionChecker()
+
+    const botSize = useAppSelector((state) => state.game.botSize)
     const heroSize = useAppSelector((state) => state.game.heroSize)
+    const botXY = useAppSelector(selectBotPosition)
+    const heroXY = useAppSelector(selectHeroPosition)
 
     const bot = props.bot
     const dispatch = useAppDispatch()
 
     // const bot = new Mover(new FormLine(16, 16))
     // const [botXY, setBotXY] = useState([100,100])
-    const botXY = useAppSelector(selectBotPosition)
-    const heroXY = useAppSelector(selectHeroPosition)
 
     if (boosterStatus) {
         const boosterBot = new BoosterDecorator(bot)
@@ -71,11 +74,22 @@ export default function BotContainer(props) {
         dispatch(botMoveAction([newXPosition, newYPosition]))
     }
 
-    if (heroXY[0] + 30 >= botXY[0] && heroXY[0] <= botXY[0] + botForm[0]) {
-        if (heroXY[1] + 30 >= botXY[1] && heroXY[1] <= botXY[1] + botForm[1]) {
-            dispatch(gameOverAction(true))
-        }
+    if (
+        collisionChecker.returnResultOfChecking(
+            heroXY,
+            heroSize,
+            botXY,
+            botSize
+        )
+    ) {
+        dispatch(gameOverAction(true))
     }
+
+    // if (heroXY[0] + 30 >= botXY[0] && heroXY[0] <= botXY[0] + botForm[0]) {
+    //     if (heroXY[1] + 30 >= botXY[1] && heroXY[1] <= botXY[1] + botForm[1]) {
+    //         dispatch(gameOverAction(true))
+    //     }
+    // }
 
     return <>{bot.returnComponent(botXY)}</>
 }

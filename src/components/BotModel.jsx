@@ -10,6 +10,8 @@ function BotModel(props) {
                 left: props.botXY[0],
                 width: props.form[0],
                 height: props.form[1],
+                borderInlineWidth: 4,
+                backgroundColor: props.color,
             }}
         ></div>
     )

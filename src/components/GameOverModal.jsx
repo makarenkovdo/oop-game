@@ -10,9 +10,13 @@ export default function GameOverModal() {
         dispatch(loadStateAction(initialState))
     }
     return (
-        <div className='modalStyle'>
-            Game over!!!!!!!!!!!!!!!
-            <button onClick={() => gameRestart()}>TRYYYY Again!</button>
+        <div className='modalContainer'>
+            <div className='modalContent'>Game over!</div>
+            <div>
+                <button className='modalButton' onClick={() => gameRestart()}>
+                    Try again!
+                </button>
+            </div>
         </div>
     )
 }
