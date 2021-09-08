@@ -43,8 +43,8 @@ export default function CollisionCheckerContainer() {
             itemSize
         )
     ) {
+        console.log("LEVEL-UP")
         dispatch(levelUpAction())
-        dispatch(exitSetPositionAction([600, 600]))
         dispatch(keyForExitAction(false))
         dispatch(boosterStatusAction(false))
     }

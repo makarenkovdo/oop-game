@@ -23,5 +23,24 @@ export default function Level1BotWrapper() {
 
     const bot = commander.execute(levelState) //command pattern creates the bot based on levelState
 
-    return <BotContainer bot={bot} />
+    let BotContainer = <BotContainer bot={bot} />
+
+    if (levelState >= 4 && levelState < 7) {
+        BotContainer = (
+            <>
+                <BotContainer bot={bot[0]} />
+                <BotContainer bot={bot[1]} />
+            </>
+        )
+    }
+
+    if (levelState === 7) {
+        BotContainer = (
+            <>
+                <BotContainer bot={boss} />
+            </>
+        )
+    }
+
+    return { BotContainer }
 }

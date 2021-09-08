@@ -24,6 +24,7 @@ export default function BotContainer(props) {
     const botXY = useAppSelector(selectBotPosition)
     const heroXY = useAppSelector(selectHeroPosition)
 
+    const shooter = props
     const bot = props.bot
     const dispatch = useAppDispatch()
 

@@ -1,6 +1,6 @@
 export default class Command {
     constructor(
-        subject,
+        factory,
         simpleMover,
         jumper,
         smallSquareForm,
@@ -10,7 +10,7 @@ export default class Command {
         moveNormal,
         moveHard
     ) {
-        this.subject = subject
+        this.factory = factory
         this.botType1 = simpleMover
         this.botType2 = jumper
         this.form1 = smallSquareForm
@@ -23,20 +23,20 @@ export default class Command {
     execute(command) {
         switch (command) {
             case 1:
-                return this.subject.create(
+                return this.factory.create(
                     this.botType1,
                     this.form1.getForm(),
                     this.strategy1
                 )
             case 2:
-                return this.subject.create(
+                return this.factory.create(
                     this.botType2,
                     this.form2.getForm(),
                     this.strategy3
                 )
             case 3:
-                return this.subject.create(
-                    this.botType3,
+                return this.factory.create(
+                    this.botType2,
                     this.form3.getForm(),
                     this.strategy3
                 )

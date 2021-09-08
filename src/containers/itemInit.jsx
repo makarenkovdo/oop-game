@@ -4,7 +4,7 @@ import ProxyItem from "../classes/items/proxyItem"
 import { useAppSelector } from "../app/hooks"
 
 export default function ItemInit() {
-    const levelState = useAppSelector((state) => state.game.level)
+    const levelState = useAppSelector((state) => state.game.level) //it's for items refresh
     console.log(levelState)
     const keyItem = new BaseItem()
     const exit = new BaseItem()

@@ -1,14 +1,19 @@
 //this is the Mediator Pattern implementation
 
 export default class CollisionChecker {
-    returnResultOfChecking(heroXY, heroSize, smthPosition, smthSize) {
+    returnResultOfChecking(
+        firstObjPosition,
+        firstObjSize,
+        secondObjPosition,
+        secondObjSize
+    ) {
         if (
-            heroXY[0] + heroSize[0] >= smthPosition[0] &&
-            heroXY[0] <= smthPosition[0] + smthSize[0]
+            firstObjPosition[0] + firstObjSize[0] >= secondObjPosition[0] &&
+            firstObjPosition[0] <= secondObjPosition[0] + secondObjSize[0]
         ) {
             if (
-                heroXY[1] + heroSize[1] >= smthPosition[1] &&
-                heroXY[1] <= smthPosition[1] + smthSize[1]
+                firstObjPosition[1] + firstObjSize[1] >= secondObjPosition[1] &&
+                firstObjPosition[1] <= secondObjPosition[1] + secondObjSize[1]
             ) {
                 return true
             } else return false

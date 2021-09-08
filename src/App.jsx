@@ -6,7 +6,6 @@ import { useAppSelector } from "./app/hooks"
 import Header from "./components/Header"
 import GameArea from "./components/GameArea"
 import HeroInit from "./containers/heroInit"
-import { cpuUsage } from "process"
 import CollisionCheckerContainer from "./containers/collisionCheckerContainer"
 import MainMenu from "./components/MainMenu"
 
