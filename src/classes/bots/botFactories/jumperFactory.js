@@ -6,11 +6,11 @@ export default class MoversFactory {
     create(type, form, strategy) {
         switch (type) {
             case "easy":
-                return new Mover(5, [300, 300], 40, form, strategy)
+                return new Mover(50, [300, 300], 1000, form, strategy)
             case "normal":
-                return new Mover(10, [300, 300], 40, form, strategy)
+                return new Mover(50, [300, 300], 1000, form, strategy)
             case "hard":
-                return new Mover(15, [300, 300], 40, form, strategy)
+                return new Mover(50, [300, 300], 1000, form, strategy)
 
             default:
                 return false

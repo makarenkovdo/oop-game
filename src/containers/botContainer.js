@@ -17,6 +17,7 @@ export default function BotContainer(props) {
     const gameOverStatus = useAppSelector(selectGameOverStatus)
     const pauseStatus = useAppSelector((state) => state.game.pauseStatus)
     const boosterStatus = useAppSelector((state) => state.game.boosterStatus)
+    const levelState = useAppSelector((state) => state.game.level)
     const collisionChecker = new CollisionChecker()
 
     const botSize = useAppSelector((state) => state.game.botSize)
@@ -30,7 +31,7 @@ export default function BotContainer(props) {
     // const bot = new Mover(new FormLine(16, 16))
     // const [botXY, setBotXY] = useState([100,100])
 
-    if (boosterStatus) {
+    if (boosterStatus && levelState >= 0) {
         const boosterBot = new BoosterDecorator(bot)
         dispatch(boosterStatusAction(false))
     }
@@ -51,6 +52,25 @@ export default function BotContainer(props) {
                 )
             }, bot.interval)
             return () => clearInterval(interval)
+        }
+    }, [botXY])
+
+    useEffect(() => {
+        if (!gameOverStatus && !pauseStatus && bot.type === "bullet") {
+            const timeout = setTimeout(() => {
+                const interval = setInterval(() => {
+                    //2 copies of interval => make 1 variable and put instead of this code
+
+                    bot.strategy.move(
+                        Math.random() * 10,
+                        moveBot,
+                        bot.moveLength,
+                        botXY,
+                        heroXY
+                    )
+                }, bot.interval)
+                return () => clearInterval(interval)
+            }, 2000)
         }
     }, [botXY])
 
