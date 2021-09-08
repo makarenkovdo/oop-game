@@ -1,44 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+11 Design Patterns in small arcade game base on SOLID style.
 
-## Available Scripts
+PATTERNS IMPLEMENTATION:
 
-In the project directory, you can run:
+ABSTRACT FACTORY:
 
-### `npm start`
+In simple words, abstract factory is abstraction for factories management
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+/////////////////////////////////////////////////////////////////////////////////
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+SOLID IMPLEMENTATION:
 
-### `npm test`
+S - Single Responsibility Principle
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The object should be responsible for only one case, because if it is responsible for two or more cases, it will have to be changed more often than we would like.
 
-### `npm run build`
+example of classes - (base class, absctract fabrics, bridge - all the realisation of SPR)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+O - Open-Closed Principle
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+open for extension, but closed for modification.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Example:
+if we want to write more bots(actions/forms/types)/levels/bosses, or we want adding the bots interact with items,
+we don't need to change base classes, we need just to expand it adding both items and decorators, and we don't need to modify checking the collision between bots and items.
 
-### `npm run eject`
+L = Liskov Substituion Principle
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   the behavior in the following classes must not conflict with the behavior of the base classes
+    In simple words, children should never override methods passed to them by their parent.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Example:
+our
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+I = Interface Segregation Principle
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+-   Entities should not depend on interfaces they do not use.
 
-## Learn More
+The main goal of the principle is to free clients from implementing methods that they don't need. This often requires splitting up interfaces, but this is not an end in itself, but only a tool.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+D = Dependency Inversion Principle
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   The Dependency Inversion Principle (DIP) states that high level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend upon abstractions.
+
+In simple words, the interaction of classes should implements through abstraction...
+
+Example: the hero interaction with bots/items through the mediator:
+src\classes\collisionChecker.js

@@ -1,4 +1,4 @@
-import MoversFactory from "./botFactory/moversFactory"
+import MoversFactory from "./botFactories/moversFactory"
 import Command from "./command"
 import FormsFactory from "./forms/formsFactory"
 import MoveRandom from "./strategies/moveRandom"
