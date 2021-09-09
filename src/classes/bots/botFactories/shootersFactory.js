@@ -1,24 +1,24 @@
 //this is the fabric
 
-import Mover from "../action/movers"
+import BaseBot from '../baseBotClass'
 
-export default class MoversFactory {
-    create(type, form, strategy) {
-        switch (type) {
-            case "simple":
+export default class ShootersFactory {
+    create(botLevel, form, strategy) {
+        switch (botLevel) {
+            case 'simple':
                 return [
-                    new Mover(0, [800, 300], 0, form, strategy),
-                    new Mover(10, [800, 300], 40, form, strategy),
+                    new BaseBot('shooter', [800, 300], 0, 0, form, strategy),
+                    new BaseBot('bullet', [800, 300], 50, 2, form, strategy),
                 ]
-            case "normal":
+            case 'normal':
                 return [
-                    new Mover(0, [800, 300], 0, form, strategy),
-                    new Mover(10, [800, 300], 40, form, strategy),
+                    new BaseBot('shooter', [800, 300], 0, 0, form, strategy),
+                    new BaseBot('bullet', [800, 300], 40, 3, form, strategy),
                 ]
-            case "hard":
+            case 'hard':
                 return [
-                    new Mover(0, [800, 300], 0, form, strategy),
-                    new Mover(10, [800, 300], 40, form, strategy),
+                    new BaseBot('shooter', [800, 300], 0, 0, form, strategy),
+                    new BaseBot('bullet', [800, 300], 30, 4, form, strategy),
                 ]
             default:
                 return false

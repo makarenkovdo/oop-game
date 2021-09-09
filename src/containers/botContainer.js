@@ -1,19 +1,23 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
 import {
     boosterStatusAction,
     botMoveAction,
     botSizeInitAction,
+    bulletMoveAction,
+    bulletStateAction,
     gameOverAction,
     selectBotPosition,
     selectGameOverStatus,
     selectHeroPosition,
-} from "../redux/gameSlice"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import BoosterDecorator from "../classes/bots/decorators/boosterDecorator"
-import CollisionChecker from "../classes/collisionChecker"
-import BotModel from "../components/BotModel"
+} from '../redux/gameSlice'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import BoosterDecorator from '../classes/bots/decorators/boosterDecorator'
+import CollisionChecker from '../classes/collisionChecker'
+import BotModel from '../components/BotModel'
 
 export default function BotContainer(props) {
+    const bulletState = useAppSelector((state) => state.game.bulletState)
+
     const gameOverStatus = useAppSelector(selectGameOverStatus)
     const pauseStatus = useAppSelector((state) => state.game.pauseStatus)
     const boosterStatus = useAppSelector((state) => state.game.boosterStatus)
@@ -22,14 +26,17 @@ export default function BotContainer(props) {
 
     const botSize = useAppSelector((state) => state.game.botSize)
     const heroSize = useAppSelector((state) => state.game.heroSize)
-    const botXY = useAppSelector(selectBotPosition)
+    let botXY = useAppSelector(selectBotPosition)
     const heroXY = useAppSelector(selectHeroPosition)
+    const bulletXY = useAppSelector((state) => state.game.bulletPosition)
 
     const bot = props.bot
     const dispatch = useAppDispatch()
 
-    // const bot = new Mover(new FormLine(16, 16))
-    // const [botXY, setBotXY] = useState([100,100])
+    if ((bot.type === 'bullet') & !bulletState) {
+        botXY = bulletXY
+        bulletStateAction(true)
+    }
 
     if (boosterStatus && levelState >= 0) {
         const boosterBot = new BoosterDecorator(bot)
@@ -56,23 +63,27 @@ export default function BotContainer(props) {
     }, [botXY])
 
     useEffect(() => {
-        if (!gameOverStatus && !pauseStatus && bot.type === "bullet") {
-            const timeout = setTimeout(() => {
-                const interval = setInterval(() => {
-                    //2 copies of interval => make 1 variable and put instead of this code
+        if (!gameOverStatus && !pauseStatus && bot.type === 'bullet') {
+            const interval = setInterval(() => {
+                //2 copies of interval => make 1 variable and put instead of this code
 
-                    bot.strategy.move(
-                        Math.random() * 10,
-                        moveBot,
-                        bot.moveLength,
-                        botXY,
-                        heroXY
-                    )
-                }, bot.interval)
-                return () => clearInterval(interval)
-            }, 2000)
+                bot.strategy.move(
+                    Math.random() * 10,
+                    moveBot,
+                    bot.moveLength,
+                    botXY,
+                    heroXY
+                )
+            }, bot.interval)
+            return () => clearInterval(interval)
         }
     }, [botXY])
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            dispatch(bulletStateAction(false))
+        }, 2000)
+    }, [bulletState])
 
     const moveBot = (xPosition, yPosition) => {
         let newXPosition = xPosition
@@ -92,7 +103,9 @@ export default function BotContainer(props) {
         if (yPosition >= yMax - 140) {
             newYPosition = yMax - 160
         }
-        dispatch(botMoveAction([newXPosition, newYPosition]))
+        if (bot.type !== 'bullet') {
+            dispatch(botMoveAction([newXPosition, newYPosition]))
+        } else dispatch(bulletMoveAction([newXPosition, newYPosition]))
     }
 
     if (
@@ -107,5 +120,12 @@ export default function BotContainer(props) {
     }
 
     // return <>{bot.returnComponent(botXY)}</>
-    return <BotModel botXY={[...botXY]} form={bot.form} />
+    return !bulletState ? (
+        <BotModel botXY={[...botXY]} form={bot.form} />
+    ) : (
+        <>
+            <BotModel botXY={[...botXY]} form={bot.form} />
+            <BotModel botXY={[...botXY]} form={bot.form} />
+        </>
+    )
 }

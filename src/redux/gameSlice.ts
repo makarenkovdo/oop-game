@@ -17,6 +17,10 @@ export interface GameState {
     itemSize: number[]
     bot2Size: number[]
 
+    bulletPosition: number[]
+    bulletState: boolean
+    bulletSize: number[]
+
     exitPosition: number[]
     keyPosition: number[]
     boosterPosition: number[]
@@ -42,6 +46,10 @@ export const initialState: GameState = {
 
     bot2Size: [],
     botSize: [],
+
+    bulletPosition: [],
+    bulletState: false,
+    bulletSize: [],
 
     exitPosition: [],
     keyPosition: [0, 0],
@@ -88,6 +96,7 @@ export const gameSlice = createSlice({
         boosterStatusAction: (state, action: PayloadAction<boolean>) => {
             state.boosterStatus = action.payload
         },
+
         heroMoveAction: (state, action: PayloadAction<number[]>) => {
             state.heroPosition = action.payload
         },
@@ -97,6 +106,17 @@ export const gameSlice = createSlice({
         itemSizeInitAction: (state, action: PayloadAction<number[]>) => {
             state.itemSize = action.payload
         },
+
+        bulletSizeInitAction: (state, action: PayloadAction<number[]>) => {
+            state.bulletSize = action.payload
+        },
+        bulletMoveAction: (state, action: PayloadAction<number[]>) => {
+            state.bulletPosition = action.payload
+        },
+        bulletStateAction: (state, action: PayloadAction<boolean>) => {
+            state.bulletState = action.payload
+        },
+
         botMoveAction: (state, action: PayloadAction<number[]>) => {
             state.botPosition = action.payload
         },
@@ -109,6 +129,7 @@ export const gameSlice = createSlice({
         bot2SizeInitAction: (state, action: PayloadAction<number[]>) => {
             state.bot2Size = action.payload
         },
+
         keyPositionSetPositionAction: (
             state,
             action: PayloadAction<number[]>
@@ -147,23 +168,29 @@ export const {
     difficultyStatusAction,
     levelUpAction,
     gameOverAction,
+    pauseStatusAction,
+    startStatusAction,
+
     heroMoveAction,
+    heroSizeInitAction,
+    heroNameAction,
     botMoveAction,
-    keyPositionSetPositionAction,
-    exitSetPositionAction,
     botSizeInitAction,
     bot2MoveAction,
     bot2SizeInitAction,
+
     loadStateAction,
     saveAction,
-    pauseStatusAction,
-    startStatusAction,
     keyForExitAction,
+    keyPositionSetPositionAction,
+    exitSetPositionAction,
     boosterSetPositionAction,
     boosterStatusAction,
     itemSizeInitAction,
-    heroSizeInitAction,
-    heroNameAction,
+
+    bulletSizeInitAction,
+    bulletMoveAction,
+    bulletStateAction,
 } = gameSlice.actions
 
 // The function below is called a selector and allows us to select a value from

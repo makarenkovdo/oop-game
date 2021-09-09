@@ -1,5 +1,5 @@
-import React from "react"
-import "./../styles/gameStyles.css"
+import React from 'react'
+import './../styles/gameStyles.css'
 
 function BotModel(props) {
     return (

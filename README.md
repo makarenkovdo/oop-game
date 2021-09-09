@@ -1,10 +1,21 @@
-11 Design Patterns in small arcade game base on SOLID style.
+## 11 Design Patterns in small arcade game base on SOLID style.
 
 PATTERNS IMPLEMENTATION:
 
 ABSTRACT FACTORY:
 
 In simple words, abstract factory is abstraction for factories management
+
+---
+
+STRATEGY:
+
+Strategy is behavioral design pattern.
+It is used to switch the behavior of an object between a family of algorithms.
+This pattern contains one abstract strategy interface and many concrete strategy implementations (algorithms) of that interface.
+
+The application uses strategy interface only.
+src\classes\bots\strategyFactories\abstractStrategyFactory.js
 
 /////////////////////////////////////////////////////////////////////////////////
 

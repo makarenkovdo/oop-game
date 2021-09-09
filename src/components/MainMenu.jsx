@@ -1,20 +1,19 @@
 //Facade implementation
 
-import { useRef } from "react"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useRef } from 'react'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
     difficultyStatusAction,
     heroNameAction,
     startStatusAction,
-} from "../redux/gameSlice"
-import "./../styles/gameStyles.css"
+} from '../redux/gameSlice'
+import './../styles/gameStyles.css'
 
 export default function MainMenu() {
     const difficultyStatus = useAppSelector(
         (state) => state.game.difficultyStatus
     )
     const heroName = useAppSelector((state) => state.game.heroName)
-    console.log(difficultyStatus, heroName)
     const dispatch = useAppDispatch()
 
     const textRef = useRef()

@@ -1,13 +1,13 @@
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
     boosterSetPositionAction,
     exitSetPositionAction,
     itemSizeInitAction,
     keyPositionSetPositionAction,
     selectHeroPosition,
-} from "../redux/gameSlice"
-import { useEffect } from "react"
-import ItemModel from "../components/ItemModel"
+} from '../redux/gameSlice'
+import { useEffect } from 'react'
+import ItemModel from '../components/ItemModel'
 
 export default function ItemContainer(props) {
     const heroXY = useAppSelector(selectHeroPosition)
@@ -22,14 +22,17 @@ export default function ItemContainer(props) {
     const booster = props.booster
 
     dispatch(itemSizeInitAction(exit.item.size))
+    dispatch(exitSetPositionAction(exit.item.position))
+    dispatch(keyPositionSetPositionAction(keyItem.position))
+    dispatch(boosterSetPositionAction(booster.position))
 
     // const heroXY = props.heroXY
 
-    useEffect(() => {
-        dispatch(exitSetPositionAction(exit.item.position))
-        dispatch(keyPositionSetPositionAction(keyItem.position))
-        dispatch(boosterSetPositionAction(booster.position))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(exitSetPositionAction(exit.item.position))
+    //     dispatch(keyPositionSetPositionAction(keyItem.position))
+    //     dispatch(boosterSetPositionAction(booster.position))
+    // }, [])
 
     // if (
     //     heroXY[0] + 20 >= exit.position[0] &&

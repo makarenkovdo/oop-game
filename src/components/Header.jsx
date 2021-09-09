@@ -8,7 +8,6 @@ import {
     selectBotPosition,
 } from "../redux/gameSlice"
 import "./../styles/gameStyles.css"
-import { newItem } from "./ItemModel"
 
 export default function Header() {
     let saveLoad = new SaveLoad()
@@ -20,7 +19,7 @@ export default function Header() {
         saveLoad.save(state)
     }
 
-    const load = (payload) => {
+    const load = () => {
         let x = saveLoad.load()
         dispatch(loadStateAction(x))
     }

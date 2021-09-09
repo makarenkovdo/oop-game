@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import CollisionChecker from "../classes/collisionChecker"
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import CollisionChecker from '../classes/collisionChecker'
 import {
     boosterStatusAction,
     exitSetPositionAction,
@@ -8,7 +8,7 @@ import {
     levelUpAction,
     selectBotPosition,
     selectHeroPosition,
-} from "../redux/gameSlice"
+} from '../redux/gameSlice'
 
 export default function CollisionCheckerContainer() {
     const dispatch = useAppDispatch()
@@ -43,10 +43,13 @@ export default function CollisionCheckerContainer() {
             itemSize
         )
     ) {
-        console.log("LEVEL-UP")
+        console.log('LEVEL-UP')
+        console.log(heroXY, heroSize, exitXY, itemSize)
         dispatch(levelUpAction())
         dispatch(keyForExitAction(false))
         dispatch(boosterStatusAction(false))
+        dispatch(exitSetPositionAction([900, 900]))
+        //item new position, otherwise auto level-up
     }
     if (
         collisionChecker.returnResultOfChecking(

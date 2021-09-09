@@ -1,6 +1,6 @@
 export default class BoosterDecorator {
     constructor(bot) {
         this.bot = bot
-        this.bot.moveLength += 5
+        this.bot.interval -= 10
     }
 }

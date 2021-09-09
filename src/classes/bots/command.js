@@ -1,44 +1,108 @@
 export default class Command {
     constructor(
-        factory,
-        simpleMover,
-        jumper,
+        abstractBotFactory,
+        strategyFactory,
         smallSquareForm,
         bigSquareForm,
-        highLineForm,
-        moveEasy,
-        moveNormal,
-        moveHard
+        highLineForm
     ) {
-        this.factory = factory
-        this.botType1 = simpleMover
-        this.botType2 = jumper
+        this.abstractBotFactory = abstractBotFactory
+        this.strategyFactory = strategyFactory
         this.form1 = smallSquareForm
         this.form2 = bigSquareForm
         this.form3 = highLineForm
-        this.strategy1 = moveEasy
-        this.strategy2 = moveNormal
-        this.strategy3 = moveHard
     }
     execute(command) {
         switch (command) {
             case 1:
-                return this.factory.create(
-                    this.botType1,
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case1,
+                    this.abstractBotFactory.botLevel1,
                     this.form1.getForm(),
-                    this.strategy1
+                    this.strategyFactory.create(
+                        this.strategyFactory.case1,
+                        this.strategyFactory.strategyType1
+                    )
                 )
             case 2:
-                return this.factory.create(
-                    this.botType2,
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case1,
+                    this.abstractBotFactory.botLevel2,
                     this.form2.getForm(),
-                    this.strategy3
+                    this.strategyFactory.create(
+                        this.strategyFactory.case2,
+                        this.strategyFactory.strategyType2
+                    )
                 )
             case 3:
-                return this.factory.create(
-                    this.botType2,
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case1,
+                    this.abstractBotFactory.botLevel3,
                     this.form3.getForm(),
-                    this.strategy3
+                    this.strategyFactory.create(
+                        this.strategyFactory.case3,
+                        this.strategyFactory.strategyType3
+                    )
+                )
+            case 4:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case2,
+                    this.abstractBotFactory.botLevel1,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case1,
+                        this.strategyFactory.strategyType1
+                    )
+                )
+            case 5:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case2,
+                    this.abstractBotFactory.botLevel2,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case2,
+                        this.strategyFactory.strategyType2
+                    )
+                )
+            case 6:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case2,
+                    this.abstractBotFactory.botLevel3,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case3,
+                        this.strategyFactory.strategyType3
+                    )
+                )
+            case 7:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case3,
+                    this.abstractBotFactory.botLevel1,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case1,
+                        this.strategyFactory.strategyType1
+                    )
+                )
+            case 8:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case3,
+                    this.abstractBotFactory.botLevel2,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case2,
+                        this.strategyFactory.strategyType2
+                    )
+                )
+            case 9:
+                return this.abstractBotFactory.create(
+                    this.abstractBotFactory.case3,
+                    this.abstractBotFactory.botLevel3,
+                    this.form1.getForm(),
+                    this.strategyFactory.create(
+                        this.strategyFactory.case3,
+                        this.strategyFactory.strategyType3
+                    )
                 )
             default:
                 return false

@@ -3,15 +3,16 @@
 import Mover from '../action/movers'
 import BaseBot from '../baseBotClass'
 
-export default class MoversFactory {
+export default class BulletFactory {
+    //TODO: DELETE THIS ONE
     create(botLevel, form, strategy) {
         switch (botLevel) {
             case 'easy':
-                return new BaseBot('mover', [300, 300], 60, 10, form, strategy)
+                return new BaseBot('bullet', [300, 300], 50, 10, form, strategy)
             case 'normal':
-                return new BaseBot('mover', [300, 300], 60, 10, form, strategy)
+                return new BaseBot('bullet', [300, 300], 30, 10, form, strategy)
             case 'hard':
-                return new BaseBot('mover', [300, 300], 60, 10, form, strategy)
+                return new BaseBot('bullet', [300, 300], 20, 10, form, strategy)
 
             default:
                 return false

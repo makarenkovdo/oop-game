@@ -1,9 +1,8 @@
-import React from "react"
-import BaseItem from "../classes/items/baseItem"
-import "./../styles/gameStyles.css"
+import React from 'react'
+import BaseItem from '../classes/items/baseItem'
+import './../styles/gameStyles.css'
 
 function ItemModel(props) {
-    console.log(props.position)
     return (
         <div
             className='itemModelStyle'

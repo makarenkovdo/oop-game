@@ -1,13 +1,13 @@
-import React from "react"
-import "./App.css"
-import ItemInit from "./containers/itemInit"
-import Level1BotWrapper from "./containers/botInit"
-import { useAppSelector } from "./app/hooks"
-import Header from "./components/Header"
-import GameArea from "./components/GameArea"
-import HeroInit from "./containers/heroInit"
-import CollisionCheckerContainer from "./containers/collisionCheckerContainer"
-import MainMenu from "./components/MainMenu"
+import React from 'react'
+import './App.css'
+import ItemInit from './containers/itemInit'
+import Level1BotWrapper from './containers/botInit'
+import { useAppSelector } from './app/hooks'
+import Header from './components/Header'
+import GameArea from './components/GameArea'
+import HeroInit from './containers/heroInit'
+import CollisionCheckerContainer from './containers/collisionCheckerContainer'
+import MainMenu from './components/MainMenu'
 
 function App() {
     const startStatus = useAppSelector((state) => state.game.startStatus)
@@ -24,12 +24,14 @@ function App() {
     //             return false
     //     }
     // }
-    return !startStatus ? (
-        <>
-            <MainMenu />
-            <GameArea />
-        </>
-    ) : (
+    return (
+        // !startStatus ? (
+        //     <>
+        //         <MainMenu />
+        //         <GameArea />
+        //     </>
+        // ) :
+
         <>
             <Header />
             <GameArea />
