@@ -1,6 +1,5 @@
 //this is the fabric
 
-import Mover from '../action/movers'
 import BaseBot from '../baseBotClass'
 
 export default class MoversFactory {

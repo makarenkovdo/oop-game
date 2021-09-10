@@ -1,5 +1,4 @@
 import { useAppSelector } from '../app/hooks'
-import BossBuilder from '../classes/bots/bossBuilder'
 import Facade from '../classes/bots/facade'
 import FormsFactory from '../classes/bots/forms/formsFactory'
 import BotContainer from './botContainer'

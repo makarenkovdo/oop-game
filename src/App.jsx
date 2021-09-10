@@ -30,8 +30,7 @@ function App() {
         //         <MainMenu />
         //         <GameArea />
         //     </>
-        // ) :
-
+        // ) : (
         <>
             <Header />
             <GameArea />

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RootState } from "../app/store"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
 
 export interface GameState {
     startStatus: boolean
@@ -33,8 +33,8 @@ export interface GameState {
 export const initialState: GameState = {
     startStatus: false,
     difficultyStatus: 0,
-    heroName: "Ordinary Hero",
-    level: 1,
+    heroName: 'Ordinary Hero',
+    level: 7,
     gameOverStatus: false,
 
     heroPosition: [20, 60],
@@ -63,7 +63,7 @@ export const initialState: GameState = {
 }
 
 export const gameSlice = createSlice({
-    name: "game",
+    name: 'game',
     initialState,
     reducers: {
         difficultyStatusAction: (state, action: PayloadAction<number>) => {

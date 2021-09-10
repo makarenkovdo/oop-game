@@ -1,5 +1,3 @@
-import BotModel from "../../components/BotModel"
-
 export default class BaseBot {
     constructor(type, position, interval, moveLength, form, strategy) {
         this.type = type
@@ -9,9 +7,5 @@ export default class BaseBot {
         this.moveLength = moveLength
         this.form = form //the bridge realisation
         this.strategy = strategy
-    }
-
-    returnComponent(botXY) {
-        return <BotModel botXY={[...botXY]} form={this.form} />
     }
 }

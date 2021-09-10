@@ -3,10 +3,8 @@ import CollisionChecker from '../classes/collisionChecker'
 import {
     boosterStatusAction,
     exitSetPositionAction,
-    gameOverAction,
     keyForExitAction,
     levelUpAction,
-    selectBotPosition,
     selectHeroPosition,
 } from '../redux/gameSlice'
 
