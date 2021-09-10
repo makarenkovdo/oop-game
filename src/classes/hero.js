@@ -1,7 +1,7 @@
 export default class Hero {
     constructor(
         position,
-        personName = "Hero",
+        personName = 'Hero',
         xPosition = 0,
         yPosition = 0,
         level = 0,
@@ -14,7 +14,7 @@ export default class Hero {
         this.size = size
         this.moveLength = moveLength
         this.level = level
-        this.color = "white"
+        this.color = 'white'
         this.borderWidth = 4
     }
 

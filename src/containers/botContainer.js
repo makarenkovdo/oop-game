@@ -62,22 +62,22 @@ export default function BotContainer(props) {
         }
     }, [botXY])
 
-    useEffect(() => {
-        if (!gameOverStatus && !pauseStatus && bot.type === 'bullet') {
-            const interval = setInterval(() => {
-                //2 copies of interval => make 1 variable and put instead of this code
+    // useEffect(() => {
+    //     if (!gameOverStatus && !pauseStatus && bot.type === 'bullet') {
+    //         const interval = setInterval(() => {
+    //             //2 copies of interval => make 1 variable and put instead of this code
 
-                bot.strategy.move(
-                    Math.random() * 10,
-                    moveBot,
-                    bot.moveLength,
-                    botXY,
-                    heroXY
-                )
-            }, bot.interval)
-            return () => clearInterval(interval)
-        }
-    }, [botXY])
+    //             bot.strategy.move(
+    //                 Math.random() * 10,
+    //                 moveBot,
+    //                 bot.moveLength,
+    //                 botXY,
+    //                 heroXY
+    //             )
+    //         }, bot.interval)
+    //         return () => clearInterval(interval)
+    //     }
+    // }, [botXY])
 
     useEffect(() => {
         const timeout = setTimeout(() => {

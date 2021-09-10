@@ -1,25 +1,17 @@
-import { useCallback, useEffect, useRef } from "react"
-import "./../styles/gameStyles.css"
-import HeroModel from "../components/HeroModel"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useCallback } from 'react'
+import './../styles/gameStyles.css'
+import HeroModel from '../components/HeroModel'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
-    boosterStatusAction,
-    exitSetPositionAction,
-    gameOverAction,
     heroMoveAction,
     heroSizeInitAction,
-    keyForExitAction,
-    levelUpAction,
-    selectExitPosition,
     selectGameOverStatus,
     selectHeroPosition,
-} from "../redux/gameSlice"
-import GameOverModal from "../components/GameOverModal"
+} from '../redux/gameSlice'
+import GameOverModal from '../components/GameOverModal'
 
 export default function Game(props) {
     const heroXY = useAppSelector(selectHeroPosition)
-    const keyPosition = useAppSelector((state) => state.game.keyPosition)
-    const exitPosition = useAppSelector(selectExitPosition)
     const gameOverState = useAppSelector(selectGameOverStatus)
     const boosterPosition = useAppSelector(
         (state) => state.game.boosterPosition
@@ -34,7 +26,7 @@ export default function Game(props) {
             newHero.move(keyCode, moveHero)
         }
     }, [])
-    window.addEventListener("keydown", handleUserKeyPress)
+    window.addEventListener('keydown', handleUserKeyPress)
 
     const moveHero = (xPosition, yPosition) => {
         let newXPosition = xPosition
