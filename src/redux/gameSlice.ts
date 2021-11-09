@@ -34,7 +34,7 @@ export const initialState: GameState = {
     startStatus: false,
     difficultyStatus: 0,
     heroName: 'Ordinary Hero',
-    level: 7,
+    level: 8,
     gameOverStatus: false,
 
     heroPosition: [20, 60],

@@ -20,6 +20,7 @@ export default class AbstractBotFactory {
     }
 
     create(factoryType, botLevel, form, strategy) {
+        console.log(factoryType, botLevel, form, strategy)
         switch (factoryType) {
             case this.case1:
                 return this.moversFactory.create(

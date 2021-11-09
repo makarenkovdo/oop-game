@@ -10,19 +10,20 @@ export default class BotStrategyFactory {
         this.case3 = 'shooter'
         this.case4 = 'bullet'
         this.strategyType1 = 'easy'
-        this.strategyType1 = 'normal'
-        this.strategyType1 = 'hard'
+        this.strategyType2 = 'normal'
+        this.strategyType3 = 'hard'
     }
     create(factoryType, strategyType) {
         switch (factoryType) {
             case this.case1:
-                return new MoverStrategyFactory(strategyType)
+                return new MoverStrategyFactory()
             case this.case2:
-                return new JumperStrategyFactory(strategyType)
+                return new JumperStrategyFactory()
             case this.case3:
-                return new ShooterStrategyFactory(strategyType)
+                console.log(new ShooterStrategyFactory())
+                return new ShooterStrategyFactory()
             case this.case4:
-                return new BulletStrategyFactory(strategyType)
+                return new BulletStrategyFactory()
 
             default:
                 return false

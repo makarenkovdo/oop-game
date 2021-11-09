@@ -4,16 +4,18 @@ import BaseBot from '../baseBotClass'
 
 export default class ShootersFactory {
     create(botLevel, form, strategy) {
+        console.log(botLevel, form, strategy)
         switch (botLevel) {
-            case 'simple':
+            case 'easy':
                 return [
-                    new BaseBot('shooter', [800, 300], 0, 0, form, strategy),
-                    new BaseBot('bullet', [800, 300], 50, 2, form, strategy),
+                    new BaseBot('shooter', [500, 300], 0, 0, form, strategy),
+                    new BaseBot('bullet', [700, 300], 50, 2, form, strategy),
+                    //TODO different strategies&forms
                 ]
             case 'normal':
                 return [
-                    new BaseBot('shooter', [800, 300], 0, 0, form, strategy),
-                    new BaseBot('bullet', [800, 300], 40, 3, form, strategy),
+                    new BaseBot('shooter', [300, 300], 0, 0, form, strategy),
+                    new BaseBot('bullet', [500, 300], 40, 3, form, strategy),
                 ]
             case 'hard':
                 return [

@@ -50,7 +50,7 @@ export default class Command {
                     this.abstractBotFactory.botLevel1,
                     this.form1.getForm(),
                     this.strategyFactory.create(
-                        this.strategyFactory.case1,
+                        this.strategyFactory.case2,
                         this.strategyFactory.strategyType1
                     )
                 )
@@ -70,7 +70,7 @@ export default class Command {
                     this.abstractBotFactory.botLevel3,
                     this.form1.getForm(),
                     this.strategyFactory.create(
-                        this.strategyFactory.case3,
+                        this.strategyFactory.case2,
                         this.strategyFactory.strategyType3
                     )
                 )
@@ -79,10 +79,7 @@ export default class Command {
                     this.abstractBotFactory.case3,
                     this.abstractBotFactory.botLevel1,
                     this.form1.getForm(),
-                    this.strategyFactory.create(
-                        this.strategyFactory.case1,
-                        this.strategyFactory.strategyType1
-                    )
+                    this.strategyFactory.create(this.strategyFactory.case3)
                 )
             case 8:
                 return this.abstractBotFactory.create(

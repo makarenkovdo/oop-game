@@ -33,10 +33,10 @@ export default function BotContainer(props) {
     const bot = props.bot
     const dispatch = useAppDispatch()
 
-    if ((bot.type === 'bullet') & !bulletState) {
-        botXY = bulletXY
-        bulletStateAction(true)
-    }
+    // if ((bot.type === 'bullet') & !bulletState) {
+    //     botXY = bulletXY
+    //     bulletStateAction(true)
+    // }
 
     if (boosterStatus && levelState >= 0) {
         const boosterBot = new BoosterDecorator(bot)
@@ -79,11 +79,11 @@ export default function BotContainer(props) {
     //     }
     // }, [botXY])
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            dispatch(bulletStateAction(false))
-        }, 2000)
-    }, [bulletState])
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         dispatch(bulletStateAction(false))
+    //     }, 2000)
+    // }, [bulletState])
 
     const moveBot = (xPosition, yPosition) => {
         let newXPosition = xPosition
@@ -103,9 +103,10 @@ export default function BotContainer(props) {
         if (yPosition >= yMax - 140) {
             newYPosition = yMax - 160
         }
-        if (bot.type !== 'bullet') {
-            dispatch(botMoveAction([newXPosition, newYPosition]))
-        } else dispatch(bulletMoveAction([newXPosition, newYPosition]))
+        console.log(newXPosition, newYPosition)
+        // if (bot.type !== 'bullet') {
+        dispatch(botMoveAction([newXPosition, newYPosition]))
+        // } else dispatch(bulletMoveAction([newXPosition, newYPosition]))
     }
 
     if (
